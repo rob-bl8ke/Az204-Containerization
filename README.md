@@ -1,13 +1,7 @@
-# Az204-Containerization
-Study and exploration of Azure Containerization (AZ-204)
-
 # Azure Containerization Study (focus on AZ-204)
 
-This repository is set up fro current and future study and exploration of Azure Containerization (AZ-204).
 - [Official Documentation - Container Instances](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-overview)
 - [Administer containers in Azure](https://learn.microsoft.com/en-us/training/paths/administer-containers-in-azure/) - Not specifically for AZ-204 course but worth following.
-
-# Sample Code
 
 # Practicals
 
@@ -41,7 +35,3 @@ This repository is set up fro current and future study and exploration of Azure 
 - [Azure Resources](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureresourcegroups)
 - [PowerShell](https://marketplace.visualstudio.com/items?itemName=ms-vscode.PowerShell)
 - [PlantUML](https://marketplace.visualstudio.com/items?itemName=jebbs.plantuml)
-
-
-**Full Labs**
-
