@@ -1,0 +1,91 @@
+@startmindmap "Container Groups"
+
+title Container Groups
+footer Azure Container Instances
+
+<style>
+    mindMapDiagram {
+        .root {
+            BackgroundColor darkblue
+            LineColor black
+            FontColor white
+        }
+
+        node {
+            FontColor white
+            LineColor black
+            BackgroundColor black
+            Shadowing 2.0
+            RoundCorner 25
+        }
+        :depth(0) {
+            FontColor black
+            LineColor white
+            BackgroundColor white
+            Shadowing 0.0
+        }
+        :depth(1) {
+            FontColor black
+            BackgroundColor darkgrey
+            Shadowing 2.0
+        }
+
+        arrow {
+            LineStyle 4
+            LineThickness 0.5
+            LineColor green
+        }
+
+        boxless {
+            FontColor black
+            Margin 10
+            Padding 10
+            MaximumWidth 400
+        }
+    }
+</style>
+
++ Container groups <<root>>
+
+--_ Collection of containers...\n ...scheduled on the same host machine
+--_ Similar to a
+--- Kubernetes Pod
+
+++_ Share lifecycle, resources,\nlocal network, storage volumes
++++ Network
+++++_ Assigned a single DNS name label\n...and public IP address
+++++_ Exposes one or more **ports**\n(from one or more container instances)
+++++_ Communicate with each other using
++++++ localhost
+++++_ Port mapping not supported
+
+
++++ Volume mounts 
+++++_ Azure file shares
+++++_ Secrets
+++++_ Empty directory
+++++_ Cloned Git repo
+
++++ Multi-container Groups
+++++ Deployment
++++++_ **Resource Manager (ARM) template**\n...deploy extra resources\neg. Azure Files share
++++++_ **YAML file**\n...concise\nonly container instances
+
++++ Resource allocation
+++++_ CPUs, memory,\n...and optionally GPUs
+++++ Example
++++++_ 2 container instances\n...1 CPU + 2 CPUs
+++++++_ == container group with 3 CPUs
+
+++ Common scenarios
+
++++_ Support separate teams and resource requirements
++++ Divide
+++++_ a single functional task\ninto a few container images
++++++_ Postman tests container + Web API container
++++++_ Application container +
+++++++_ Logging Monitor
+++++++_ Monitoring container
++++++_ Front-end container + Backend 3rd party API container\n...(think SigningHub) 
+
+@endmindmap

@@ -1,0 +1,114 @@
+@startmindmap "Azure Container Instances"
+
+title Azure Container Instances
+caption Azure Container Instances
+
+<style>
+
+    mindMapDiagram {
+        .root {
+            BackgroundColor darkblue
+            LineColor black
+            FontColor white
+        }
+
+        node {
+            FontColor white
+            LineColor black
+            BackgroundColor black
+            Shadowing 2.0
+            RoundCorner 25
+        }
+        :depth(0) {
+            FontColor black
+            LineColor white
+            BackgroundColor white
+            Shadowing 0.0
+        }
+        :depth(1) {
+            FontColor black
+            BackgroundColor darkgrey
+            Shadowing 2.0
+        }
+
+        arrow {
+            LineStyle 4
+            LineThickness 0.5
+            LineColor green
+        }
+
+        boxless {
+            FontColor black
+            Margin 10
+            Padding 10
+            MaximumWidth 400
+        }
+    }
+</style>
+
++ **Azure Kubernetes Service (AKS)** <<root>>
+++_ Full container orchestration
+++_ Service discovery across containers
+--_ Automatic scaling
+--_ Coordinated upgrades
+
++ **ACI** <<root>>
+
+++ When?
++++_ Operate in isolated containers
+++++ Simple applications
+++++ Task automation
+++++ Build jobs
+
+++ Benefits
++++_ Fast startup - No provisioning and managing of VMs
++++_ Container (and Group) access - IP Address and FQDN
++++_ Hypervisor-level security
++++_ Minimum customer data in order to run
++++_ Custom sizes for CPU cores and memory
+++++ Optimum Utilization
++++_ Mount Azure File shares directly to container
++++_ Support using the same API
+++++ Linux
+++++ Windows
+
+
+-- Shortcomings
+---_ No discovery across multiple containers
+---_ No container orchestration
+---_ No Automatic scaling
+---_ No coordinated application upgrades
+
+-- Environment variables
+--- Secure values
+----_ Hold sensitive information (passwords, keys)
+----_ Not visible from Azure Portal or CLI.
+----_ **secureValue** rather than **value** in YAML.--_ Top-level resource is a
+--- Container Group <<root>>
+
+-- SKU
+--- Standard
+----_ Recommended for most scenarios
+----_ Hypervisor-level isolation
+--- Confidential
+----_ Hardware level isolation
+
+++ Execution
++++_ Containers **billed by the second**.\nOnly charged for the compute resources used.
++++ Container restart policy
+++++ Always
++++++_ Containers in group are always restarted
+++++ Never
++++++_ Containers run at most once.\n...never restarted
+++++ OnFailure
++++++_ **Default**
++++++_ Containers run at least once...
++++++_ Restarted when terminates with nonzero exit code.
++++ Run to completion
+++++_ If container with Never or OnFailure\nstops status is set to
++++++ Terminated.
+
+
+
+
+@endmindmap

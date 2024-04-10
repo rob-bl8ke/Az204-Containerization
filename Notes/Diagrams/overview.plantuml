@@ -1,0 +1,20 @@
+@startmindmap "Containerization Overview"
+
++ Containers
+++ Common\nResources
++++ Container Instances
+++++_ Quick and dirty (prototypes not scalable)
++++ Web Apps for Containers
+++++_ More options + scalable
++++ Container Registry
+++++_ Azure image directory used to spin up\ncontainer instances and container web apps
++++ Azure Kubernetes
+++++_ Microsoft recommends this for container orchestration.
++++ Azure Service Fabric
+++++_ Distributed platform\nPackage deploy, and manage microservices\nand containers
+++ Plans
++++ Basic
++++ Standard
++++ Premium
+
+@endmindmap

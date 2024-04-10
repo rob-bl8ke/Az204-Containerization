@@ -1,0 +1,85 @@
+@startmindmap "Azure Container Registry Tasks"
+
+title Azure Container Registry Tasks
+
+<style>
+    mindMapDiagram {
+        .root {
+            BackgroundColor darkblue
+            LineColor black
+            FontColor white
+        }
+
+        node {
+            FontColor white
+            LineColor black
+            BackgroundColor black
+            Shadowing 2.0
+            RoundCorner 25
+        }
+        :depth(0) {
+            FontColor black
+            LineColor white
+            BackgroundColor white
+            Shadowing 0.0
+        }
+        :depth(1) {
+            FontColor black
+            BackgroundColor darkgrey
+            Shadowing 2.0
+        }
+
+        arrow {
+            LineStyle 4
+            LineThickness 0.5
+            LineColor green
+        }
+
+        boxless {
+            FontColor black
+            Margin 10
+            Padding 10
+            MaximumWidth 400
+        }
+    }
+</style>
+
+- ACR Tasks <<root>>
+-- Build and manage containers
+---_ Suite of features within ACR
+---_ Provides cloud-based\ncontainer image building
+---- Linux
+---- Windows
+---- ARM
+---_ Can automate OS and framework\npatching for Docker containers
+---_ Enables automated builds triggered by\nsource code updates, base image updates, or timers
+
+++ Task scenarios
++++ Quick task
+++++_ Build and push a single container image\nto a container registry on-demand
+++++_ No need for local Docker Engine installation
+++++_ Verify, catch problems before committing code
++++ Automatically\ntriggered tasks
+++++_ **Trigger (build)**\n**on source code update**
++++++_ Code committed.
++++++_ PR is made or updated.
++++++_ **az acr task create**
+++++_ Trigger on **base image update**
+++++_ Trigger on a **schedule**
+ 
++++ Multi-step task
+++++_ Define in
++++++ YAML
+++++_ Extend single image build-and-push capability\nwith multi-step,\nmulti-container-based workflows
+
+-- Image platforms
+--- Linux OS and the amd64 architecture
+----_ ...used to build images by default.
+---_ Specify **platform** tag to build Windows images or Linux images for other architectures
+---_ Specify OS and optionally a supported architecture or variant
+
+++ Explore elements of a Dockerfile
++++_ **Dockerfile** is a script containing instructions to build a Docker image
++++_ Includes information on the base image, updating the base OS,\ninstalling software, build artifacts, services to expose, and the command to run
+
+@endmindmap

@@ -1,0 +1,82 @@
+@startmindmap
+skinparam backgroundColor #FFFFFF
+
+* Azure Container Apps
+** Usage and Benefits
+***_ Serverless container service
+***_ Robust autoscaling capabilities
+***_ No complex infrastructure management
+***_ Run microservices and containerized applications
+***_ Serverless platform over Azure Kubernetes
+***_ Managed Kubernetes and container orchestration
+***_ Support for any runtime, programming language, development stack
+
+***_ Automatic restart of crashed containers
+
+*** Common uses
+****_ API endpoints
+****_ background processing, 
+****_ event-driven processing, 
+****_ microservices
+
+** Limitations
+***_ No privileged containers
+***_ Linux-based (linux/amd64) container images required
+
+** Dynamic scaling
+***_ based on HTTP traffic, event-driven processing, CPU or memory load
+***_ Any KEDA-supported scaler
+
+** Traffic splitting
+***_ Blue/Green deployments and A/B testing
+
+** Networking
+***_ HTTPS ingress without managing other Azure infrastructure
+***_ Internal ingress and service discovery for secure internal-only endpoints
+***_ Microservices with **Dapr** integration
+
+** Configuration
+***_ Manage applications with Azure CLI, Azure portal, ARM templates
+***_ Securely manage secrets directly in the application
+***_ Setup containers using properties.template in ARM templates
+***_ Array of containers for sidecar pattern
+
+** Logging
+*** Monitor logs using Azure Log Analytics
+
+
+** App Service Environment
+***_ Networking
+****_ Provide existing virtual network for container apps environment
+
+
+** Microservices properties
+***_ Independent scaling, versioning, and upgrades
+***_ Service discovery
+***_ Native Dapr integration
+*** Dapr integration
+****_ Support for microservices system
+****_ Distributed function calls
+****_ Failure handling, retries, timeouts
+****_ Observability, pub/sub, service-to-service invocation with mutual TLS, retries, and more
+
+** Authentication and authorization
+***_ Built-in authentication and authorization
+***_ No code required
+***_ Federated identity providers: Microsoft Identity Platform,\nFacebook, GitHub, Google, Twitter, Any OpenID Connect provider
+
+** Container registries
+***_ Run containers from any registry: Docker Hub, Azure Container Registry (ACR)
+***_ Deploy images from private and public registries
+***_ Credentials + registry fields info in Container Apps configuration\n**properties.configuration** section
+
+* Azure Container Apps environments
+**_ Secure boundary with virtual network and Log Analytics workspace
+**_ Deploy related services together
+**_ Different applications in the same virtual network
+**_ Instrument Dapr applications via Dapr service invocation API
+**_ Share Dapr configuration and log analytics workspace
+**_ Different environments for resource isolation and communication restrictions
+
+
+@endmindmap

@@ -1,0 +1,53 @@
+@startmindmap
+skinparam nodeWidth 200
+skinparam nodeHeight 30
+
+
++ Authentication and authorization\nmiddleware component
+++_ Authenticates users and clients with the specified identity provider(s)
+++_ Manages the authenticated session
+++_ Injects identity information into HTTP request headers
+++ The platform middleware
++++_ Runs in a separate container, isolated from the application code
++++_ ** Sidecar Design Pattern**
++++_ Provides relevant information to the app through request headers
+
++ Authentication flow
+++ Without provider SDK\n(server-directed flow or server flow)
++++_ Delegates federated sign-in to Container Apps
++++_ Presents the provider's sign-in page to the user
+++ With provider SDK\n(client-directed flow or client flow)
++++_ Manually signs users into the provider
++++_ Submits the authentication token to Container Apps for validation
+
++ Manage revisions and secrets
+++ Container app revisions
++++_ Immutable snapshots of a container app version
++++_ Used to release a new version or revert to an earlier version
+++ Updating a container app
++++_ Modify environment variables, compute resources, scale parameters, and deploy a different image
++++_ Generates a new revision if there are revision-scope changes
+++ Manage secrets
++++_ Securely store sensitive configuration values
++++_ Secrets can be referenced by multiple revisions
++++_ Updated or deleted secrets don't automatically affect existing revisions
+
++ Dapr integration
+++ Distributed Application Runtime (Dapr)
++++_ Simplifies the authoring of distributed, microservice-based applications
++++_ Provides capabilities for intercommunication and service-to-service calls
+++ Dapr APIs
++++_ Service-to-service invocation with mTLS authentication and encryption
++++_ State management for transactions and CRUD operations
++++_ Pub/sub for publisher and subscriber intercommunication
++++_ Bindings to trigger applications based on events
++++_ Dapr actors for scalable, message-driven units of work
++++_ Observability with tracing information to Application Insights
++++_ Secrets access from application code or Dapr components
+++ Dapr enablement
++++_ Configurable through Container Apps CLI, IaC templates, or the Azure portal
+++ Dapr components and scopes
++++_ Modular design with pluggable abstraction for connecting to external services
++++_ Can be shared across container apps or scoped to specific apps
++++_ Can use Dapr secrets for secure configuration metadata
+@endmindmap
