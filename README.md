@@ -10,7 +10,7 @@
 #### Azure Container Instances
 - [Exercise - Deploy a container instance by using the Azure CLI](https://learn.microsoft.com/en-us/training/modules/create-run-container-images-azure-container-instances/3-run-azure-container-instances-cloud-shell) - on the Learning Path
     - [Quickstart: Deploy a container instance in Azure using the Azure portal](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-quickstart-portal)
-    - [Quickstart: Deploy a container instance in Azure using Azure PowerShell](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-quickstart-powershell)
+    - [Quickstart: Deploy a container instance in Azure using Azure PowerShell](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-quickstart-powershell) - Uses the `Az` PowerShell module. `iis:nanoserver` image used in this lab is no longer supported. Rather use the `mcr.microsoft.com/azuredocs/aci-helloworld` image until the documentation is updated.
     - [Quickstart: Deploy a container instance in Azure using Bicep](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-quickstart-bicep?tabs=CLI)
     - [Quickstart: Deploy a container instance in Azure using an ARM template](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-quickstart-template)
     - [Tutorial: Deploy a multi-container group using a YAML file](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-multi-container-yaml)

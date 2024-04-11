@@ -1,6 +1,106 @@
 # Container Instances
 
-## Create a container instance
+## Create a Basic Container Instance (PowerShell and Azure CLI)
+
+Set your variables. The `$dnsNameLabel` will become the fully qualified domain name (FQDN).
+```powershell
+$resourceGroup = _ 
+$location = southafricasouth
+$image =  "mcr.microsoft.com/azuredocs/aci-wordcount:latest"
+$containerName = _
+$dnsNameLabel = _
+```
+Login to Azure and create your group
+```powershell
+az login
+az group create --name $resourceGroup --location $location
+```
+
+Create the container using an image hosted at Microsoft. Expose port 80.
+```powershell
+az container create --resource-group $resourceGroup `
+    --name $containerName `
+    --image $image `
+    --ports 80 `
+    --dns-name-label $dnsNameLabel `
+    --location $location
+```
+
+Capture the FQDN. If you copy it you can navigate directly to the container instance landing page.
+```powershell
+az container show --resource-group $resourceGroup `
+    --name $containerName `
+    --query "{FQDN:ipAddress.fqdn,ProvisioningState:provisioningState}" --out table
+```
+
+## Create a Basic Container Instance (PowerShell `Az` Module)
+
+```ps
+$resourceGroup = "" 
+$location = ""
+$containerName = ""
+$containerGroupName = ""
+$dnsNameLabel = ""
+$image =  "mcr.microsoft.com/azuredocs/aci-helloworld"
+```
+
+```ps
+Connect-AzAccount
+
+New-AzResourceGroup -Name $resourceGroup -Location $location
+```
+
+Create the container, adding port 80 to it
+```ps
+$port = New-AzContainerInstancePortObject -Port 80
+
+$container = New-AzContainerInstanceObject `
+    -Name $containerName `
+    -Image $image `
+    -RequestCpu 1 `
+    -RequestMemoryInGb 1.5 `
+    -Port @($port)
+```
+
+#### Alternate ports (not part of this exercise... skip)
+You'd add TCP ports like this...
+```ps
+$port1 = New-AzContainerInstancePortObject -Port 8000 -Protocol TCP
+$port2 = New-AzContainerInstancePortObject -Port 8001 -Protocol TCP
+
+$container = New-AzContainerInstanceObject `
+    -Name $containerName `
+    -Image $image `
+    -RequestCpu 1 `
+    -RequestMemoryInGb 1.5 `
+    -Port @($port1, $port2)
+```
+
+Finally, create the container group. Note that the way this is shown in the examples is incorrect and does not work. Things have changed this [this version of the Az module](https://learn.microsoft.com/en-us/powershell/module/az.containerinstance/new-azcontainergroup?view=azps-11.4.0) and some things have moved around. You updated before trying the examples and could not get it to work until you looked at the updated examples.
+
+```ps
+New-AzContainerGroup -ResourceGroupName $resourceGroup `
+    -Name $containerGroupName `
+    -Location $location `
+    -Container $container `
+    -OsType Linux `
+    -RestartPolicy "Never" `
+    -IpAddressType Public `
+    -IPAddressDnsNameLabel $dnsNameLabel
+```
+
+At this point, you should be able to navigate to your container landing page.
+```ps
+Get-AzContainerGroup -ResourceGroupName $resourceGroup `
+    -Name $containerGroupName `
+    | Select-Object -Property  ResourceGroupName, IPAddressDnsNameLabel, Name 
+```
+To remove the resource and the container group and instance.
+```ps
+Remove-AzContainerGroup -ResourceGroupName myResourceGroup -Name myContainerGroup
+```
+
+## Create a container instance (Restart policy, CPU, memory, and environment variables)
 
 ```bash
 #!/bin/bash
