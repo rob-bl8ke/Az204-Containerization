@@ -55,3 +55,45 @@ Write-Output  "Web App Container Prefix: $webApp"
 Write-Output  "App Container Env: $appContainerEnv"
 Write-Output  "Image Tag: $imageTag"
 ```
+
+# Check for...
+
+This returns a JSON response with high level tenant and subscription information.
+
+```powershell
+$tenantInfo = (az login)
+```
+### Resource Group
+
+Create a resource group  if it doesn't exist.
+
+```powershell
+if ((az group exists --name $resourceGroup)) {
+    Write-Host "Group $resourceGroup exists in $($tenantInfo.name)"
+} else {
+    Write-Host "Group DOES NOT exist... creating"
+    az group create --name $resourceGroup --location eastus
+}
+```
+Deleting a resource group if it exists (using Bash)
+
+```bash
+#!/bin/bash
+
+# Set the name of the resource group you want to delete
+resourceGroup="..."
+
+# List tables
+# az group list -o Table
+
+# Check if the resource group exists
+if [ $(az group exists --name $resourceGroup) = true ]; then
+  # If the resource group exists, delete it
+  echo "Deleting resource group $resourceGroup ..."
+  az group delete --name $resourceGroup --yes
+  echo "Resource group $resourceGroup deleted."
+else
+  # If the resource group doesn't exist, display a message
+  echo "Resource group $resourceGroup does not exist."
+fi
+```
