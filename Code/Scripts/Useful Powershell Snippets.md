@@ -65,7 +65,6 @@ prefix|resourcegroup|location
 ```powershell
 
 $settings = $Env:AzureScriptSettings
-$arr
 $arr = $settings.Split("|")
 $prefix = $arr[0]
 

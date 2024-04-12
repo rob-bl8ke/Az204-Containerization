@@ -2,6 +2,13 @@
 
 ## Create a Basic Container Instance (PowerShell and Azure CLI)
 
+### Overview
+- Create a resource group.
+- Create a container.
+    - Git it an image and a FQDN and expose it via port 80.
+
+### Code
+
 Set your variables. The `$dnsNameLabel` will become the fully qualified domain name (FQDN).
 ```powershell
 $resourceGroup = _ 
@@ -16,7 +23,7 @@ az login
 az group create --name $resourceGroup --location $location
 ```
 
-Create the container using an image hosted at Microsoft. Expose port 80.
+Create the container using an image hosted at Microsoft. Expose port 80. If you wish to specify more than one port use a space seperated list such as "80 443".
 ```powershell
 az container create --resource-group $resourceGroup `
     --name $containerName `
@@ -35,6 +42,14 @@ az container show --resource-group $resourceGroup `
 
 ## Create a Basic Container Instance (PowerShell `Az` Module)
 
+Code originally [based on this lab](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-quickstart-powershell). The image (`iis:nanoserver`) used in the lab is no longer supported and the closest thing you could find to it is [Nano Server](https://hub.docker.com/_/microsoft-windows-nanoserver). Unsure as to whether this uses IIS as a web server or not. But it is Windows-based.
+
+### Overview
+- Create a new resource group (`New-AzResourceGroup`)
+- Create a new container instance object (`New-AzContainerInstanceObject`)
+- Create a new container group object (`New-AzContainerGroup`) and assign the container to it.
+
+### Code
 ```ps
 $resourceGroup = "" 
 $location = ""
@@ -100,7 +115,22 @@ To remove the resource and the container group and instance.
 Remove-AzContainerGroup -ResourceGroupName myResourceGroup -Name myContainerGroup
 ```
 
-## Create a container instance (Restart policy, CPU, memory, and environment variables)
+## Create a Container Instance Group (Restart policy, CPU, memory, and environment variables)
+
+### Overview
+
+- Create a resource group.
+- Create a container. Give it a FQDN (exposed on port 80) and a restart policy. Request a CPU and memory of 1 GB respectively.
+- Create a container with environment variables
+
+> Although this exercise does successfully create a container group, unfortunately you can only see the properties of the other container, there is no way to interact with it as the two containers don't talk to each other and the word-count container is not exposed in any way. To view its environment variables one has to `az container show` it.
+
+### Code
+- The docker images used for the following images are hosted here:
+    - [ACI Hello World](https://hub.docker.com/_/microsoft-azuredocs-aci-helloworld)
+    - [ACI Word Count](https://hub.docker.com/_/microsoft-azuredocs-aci-wordcount)
+
+> This script is to be run in bash and not PowerShell
 
 ```bash
 #!/bin/bash
@@ -110,7 +140,8 @@ Remove-AzContainerGroup -ResourceGroupName myResourceGroup -Name myContainerGrou
 # https://learn.microsoft.com/en-us/training/modules/create-run-container-images-azure-container-instances/3-run-azure-container-instances-cloud-shell
 
 resourceGroup=...resourcegroup
-container=...container
+container=...-hello-world-container
+wordContainer=...-word-count-container
 location=eastus
 
 # az login
@@ -130,10 +161,12 @@ az container create --resource-group $resourceGroup \
     --memory 1
 
 # Create a container with environment variables
+# - in PowerShell should be "NumWords=5 MinLength=8"
+# - at the old style windows command prompt should be "NumWords"="5" "MinLength"="8"
 az container create \
     --resource-group $resourceGroup \
-    --name mywordcontainer \
-    --image mcr.microsoft.com/azuredocs/aci-wordcount:latest \
+    --name $wordContainer \
+    --image mcr.microsoft.com/azuredocs/aci-wordcount \
     --restart-policy OnFailure \
     --environment-variables 'NumWords'='5' 'MinLength'='8'
 
@@ -142,6 +175,12 @@ az container show --resource-group $resourceGroup \
     --name $container \
     --query "{ FQDN:ipAddress.fqdn, ProvisioningState:provisioningState }" \
     --out table
+
+# Show the environment variables of the word-count container
+az container show --resource-group $resourceGroup \
+    --name $wordContainer \
+    --query "{ EnvironmentVariables:containers[0].environmentVariables }" \
+    --out yaml
 ```
 
 ## Tear down
