@@ -2,6 +2,10 @@
 
 - [Source](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-volume-azure-files#create-an-azure-file-share)
 
+Note how similar creating a file share is to creating a blob storage container... the commands are very similar. For a blob storage container it would be `az storage container create` with very similar properties.
+
+However, when creating a file share it is `az storage share create`.
+
 ```PowerShell
 
 $settings = $Env:AzureScriptSettings
@@ -91,6 +95,8 @@ az container show --resource-group ...resourcegroup \
 ```
 
 # A note on mounting volumes on Windows
+
+This is rather unrelated but worth investigating because of the issues that surround mounting a Windows file system into a Linux container using a local Docker for Windows engine.
 
 - [Source](https://stackoverflow.com/questions/60916317/using-docker-for-windows-to-volume-mount-a-windows-drive-into-a-linux-container)
 - [Another Source](https://forums.docker.com/t/mounted-windows-share-doesnt-show-contents-within-docker-container/100343)
