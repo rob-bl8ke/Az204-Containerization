@@ -77,15 +77,28 @@ footer Azure Container Instances
 +++++_ 2 container instances\n...1 CPU + 2 CPUs
 ++++++_ == container group with 3 CPUs
 
-++ Common scenarios
++++ Azure File shares
+++++_ are
++++++_  fully managed... use Server Message Block (SMB) protocol
++++++_ also used with VMs
+++++_ limited to...
++++++_ Linux container only
++++++_ Must **run as root**
++++++_ CIFS support
 
-+++_ Support separate teams and resource requirements
-+++ Divide
-++++_ a single functional task\ninto a few container images
-+++++_ Postman tests container + Web API container
-+++++_ Application container +
-++++++_ Logging Monitor
-++++++_ Monitoring container
-+++++_ Front-end container + Backend 3rd party API container\n...(think SigningHub) 
++ Usage <<root>>
+--_ support
+---_ separate resource requirements
+---_ separate teams
+++ Divide
++++_ a single functional task\ninto a few container images
+++++ Side-car pattern
++++ Examples
+++++_ Logging and monitoring
++++++_ Application container
++++++_ Monitoring container (logging)
+++++_ multiple apis
++++++_ Frontend container +
++++++_ Backend 3rd party API container\n...(think SigningHub) 
 
 @endmindmap
