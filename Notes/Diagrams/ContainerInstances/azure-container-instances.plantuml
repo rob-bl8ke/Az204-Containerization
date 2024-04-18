@@ -108,7 +108,4 @@ caption Azure Container Instances
 ++++_ If container with Never or OnFailure\nstops status is set to
 +++++ Terminated.
 
-
-
-
 @endmindmap

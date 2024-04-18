@@ -1,82 +1,132 @@
-@startmindmap
-skinparam backgroundColor #FFFFFF
+@startmindmap "Azure Container Apps"
 
-* Azure Container Apps
-** Usage and Benefits
-***_ Serverless container service
-***_ Robust autoscaling capabilities
-***_ No complex infrastructure management
-***_ Run microservices and containerized applications
-***_ Serverless platform over Azure Kubernetes
-***_ Managed Kubernetes and container orchestration
-***_ Support for any runtime, programming language, development stack
+title Azure Container Apps\nOverview
 
-***_ Automatic restart of crashed containers
+' Available themes: https://plantuml.com/theme
+!theme sketchy
 
-*** Common uses
-****_ API endpoints
-****_ background processing, 
-****_ event-driven processing, 
-****_ microservices
+' skinparam backgroundColor #e8edec
+skinparam backgroundColor #969998
 
-** Limitations
-***_ No privileged containers
-***_ Linux-based (linux/amd64) container images required
+<style>
+    mindMapDiagram {
+        .root {
+            BackgroundColor darkblue
+            LineColor black
+            FontColor white
+        }
 
-** Dynamic scaling
-***_ based on HTTP traffic, event-driven processing, CPU or memory load
-***_ Any KEDA-supported scaler
+        .blue {
+            FontColor darkblue
+        }
 
-** Traffic splitting
-***_ Blue/Green deployments and A/B testing
+        node {
+            FontColor white
+            LineColor black
+            BackgroundColor black
+            Shadowing 2.0
+            RoundCorner 25
+        }
+        :depth(0) {
+            FontColor black
+            LineColor white
+            BackgroundColor white
+            Shadowing 0.0
+        }
+        :depth(1) {
+            FontColor black
+            BackgroundColor darkgrey
+            Shadowing 2.0
+        }
 
-** Networking
-***_ HTTPS ingress without managing other Azure infrastructure
-***_ Internal ingress and service discovery for secure internal-only endpoints
-***_ Microservices with **Dapr** integration
+        arrow {
+            LineStyle 4
+            LineThickness 0.5
+            LineColor green
+        }
 
-** Configuration
-***_ Manage applications with Azure CLI, Azure portal, ARM templates
-***_ Securely manage secrets directly in the application
-***_ Setup containers using properties.template in ARM templates
-***_ Array of containers for sidecar pattern
+        boxless {
+            FontColor black
+            Margin 10
+            Padding 10
+            MaximumWidth 400
+        }
+    }
+</style>
 
-** Logging
-*** Monitor logs using Azure Log Analytics
+caption Serverless container service <<blue>>
+footer Built for microservice applications without the overhead of managing complex infrastructure
+
+legend right
+Used for microservice applications that require __orchestration__
+...without the overhead of managing complex infrastructure
+endlegend
+
++ Azure Container Apps <<root>>
+++ Purpose
++++_ Container service
+++++_ Run microservices\nand containerized applications
+++++ Serverless
++++++_ Managed container orchestration
++++++_ platform over
+++++++ Azure Kubernetes
++++++_ No complex infrastructure management
+
+-- Scaling
+--- Autoscaling
+----_ Robust **autoscaling** capabilities
+----_ Automatic restart of crashed containers
 
 
-** App Service Environment
-***_ Networking
-****_ Provide existing virtual network for container apps environment
+--- Dynamic scaling
+----_  via any **KEDA-supported** scaler
+----_ based on
+-----_ HTTP traffic
+-----_ Event-driven processing
+-----_ <&flag> CPU or memory load <<blue>>
+------_ **CANNOT**\nscale to zero <<blue>>
+
+++++_ Support for any runtime,\nprogramming language, development stack
++++ Common uses
+++++ Microservices
+++++_ API endpoints
+++++ Processing
++++++_ background processing, 
++++++_ event-driven processing, 
+
+-- Limitations
+---_ No privileged containers
+---_ <&flag> Cannot run as root <<blue>>
+--- Linux Only
+----_ Linux-based (linux/amd64)\ncontainer images required
 
 
-** Microservices properties
-***_ Independent scaling, versioning, and upgrades
-***_ Service discovery
-***_ Native Dapr integration
-*** Dapr integration
-****_ Support for microservices system
-****_ Distributed function calls
-****_ Failure handling, retries, timeouts
-****_ Observability, pub/sub, service-to-service invocation with mutual TLS, retries, and more
 
-** Authentication and authorization
-***_ Built-in authentication and authorization
-***_ No code required
-***_ Federated identity providers: Microsoft Identity Platform,\nFacebook, GitHub, Google, Twitter, Any OpenID Connect provider
 
-** Container registries
-***_ Run containers from any registry: Docker Hub, Azure Container Registry (ACR)
-***_ Deploy images from private and public registries
-***_ Credentials + registry fields info in Container Apps configuration\n**properties.configuration** section
+++ Traffic splitting
++++_ Blue/Green deployments and A/B testing
 
-* Azure Container Apps environments
-**_ Secure boundary with virtual network and Log Analytics workspace
-**_ Deploy related services together
-**_ Different applications in the same virtual network
-**_ Instrument Dapr applications via Dapr service invocation API
-**_ Share Dapr configuration and log analytics workspace
-**_ Different environments for resource isolation and communication restrictions
 
+++ Configuration
++++_ Manage applications with Azure CLI, Azure portal, ARM templates
++++_ Securely manage secrets directly in the application
++++_ Setup containers using properties.template in ARM templates
++++_ Array of containers for sidecar pattern
+
+++_ Management (over virtual network) using
++++ App Service Environment
+++++_ Microservices with **Dapr** integration
+
+-- Authentication and authorization
+---_ **Built-in AuthZ and AuthN**
+---_ **No code required**
+---_ Federated identity providers: Microsoft Identity Platform,\nFacebook, GitHub, Google, Twitter, Any OpenID Connect provider
+
+-- Container registries
+---_ Run containers from any registry
+---- Docker Hub
+---- Azure Container Registry (ACR)
+---_ Deploy images from private and public registries
+---_ Credentials + registry fields info in configuration
 
 @endmindmap
