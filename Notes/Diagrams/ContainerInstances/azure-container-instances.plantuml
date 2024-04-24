@@ -52,6 +52,12 @@ caption Azure Container Instances
 --_ Automatic scaling
 --_ Coordinated upgrades
 
++ **Azure Container App Environments** <<root>>
+++_ Full container orchestration
+++_ Service discovery across containers
+--_ Automatic scaling
+--_ Coordinated upgrades
+
 + **ACI** <<root>>
 
 ++ When?
@@ -62,7 +68,7 @@ caption Azure Container Instances
 
 ++ Benefits
 +++_ Fast startup - No provisioning and managing of VMs
-+++_ Container (and Group) access - IP Address and FQDN
++++_ Container (and Container Group) access - IP Address and FQDN
 +++_ Hypervisor-level security
 +++_ Minimum customer data in order to run
 +++_ Custom sizes for CPU cores and memory
@@ -71,20 +77,20 @@ caption Azure Container Instances
 +++_ Support using the same API
 ++++ Linux
 ++++ Windows
+++ Container Group <<root>>
 
 
 -- Shortcomings
 ---_ No discovery across multiple containers
 ---_ No container orchestration
----_ No Automatic scaling
+---_ No automatic scaling
 ---_ No coordinated application upgrades
 
 -- Environment variables
 --- Secure values
 ----_ Hold sensitive information (passwords, keys)
 ----_ Not visible from Azure Portal or CLI.
-----_ **secureValue** rather than **value** in YAML.--_ Top-level resource is a
---- Container Group <<root>>
+----_ **secureValue** rather than **value** in YAML.
 
 -- SKU
 --- Standard

@@ -47,9 +47,9 @@ footer Azure Container Instances
 
 + Container groups <<root>>
 
---_ Collection of containers...\n ...scheduled on the same host machine
 --_ Similar to a
 --- Kubernetes Pod
+--_ Collection of containers...\n ...scheduled on the same host machine
 
 ++_ Share lifecycle, resources,\nlocal network, storage volumes
 +++ Network
@@ -58,13 +58,26 @@ footer Azure Container Instances
 ++++_ Communicate with each other using
 +++++ localhost
 ++++_ Port mapping not supported
++++++_ share same port namespace
 
 
 +++ Volume mounts 
-++++_ Azure file shares
 ++++_ Secrets
 ++++_ Empty directory
 ++++_ Cloned Git repo
+++++ Azure File shares
++++++_ are
+++++++_  fully managed...\nuse Server Message Block (SMB) protocol
+++++++_ also used with VMs
++++++_ limited to...
+++++++_ Linux containers only
+++++++_ Container must **run as root**
+++++++_ CIFS support
+++++ MUST deploy using
++++++_ ARM Template
++++++_ YAML file
+
+
 
 +++ Multi-container Groups
 ++++ Deployment
@@ -77,14 +90,6 @@ footer Azure Container Instances
 +++++_ 2 container instances\n...1 CPU + 2 CPUs
 ++++++_ == container group with 3 CPUs
 
-+++ Azure File shares
-++++_ are
-+++++_  fully managed... use Server Message Block (SMB) protocol
-+++++_ also used with VMs
-++++_ limited to...
-+++++_ Linux container only
-+++++_ Must **run as root**
-+++++_ CIFS support
 
 + Usage <<root>>
 --_ support
