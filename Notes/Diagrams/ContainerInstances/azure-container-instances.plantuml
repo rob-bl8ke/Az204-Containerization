@@ -1,5 +1,12 @@
 @startmindmap "Azure Container Instances"
 
+'https://plantuml.com/sprite
+'https://plantuml.com/openiconic eg. <&question-mark>
+' https://plantuml.com/theme
+!theme sketchy
+skinparam backgroundColor #969998
+
+
 title Azure Container Instances
 caption Azure Container Instances
 
@@ -68,13 +75,13 @@ caption Azure Container Instances
 
 ++ Benefits
 +++_ Fast startup - No provisioning and managing of VMs
-+++_ Container (and Container Group) access - IP Address and FQDN
++++_ Container (and Container Group) access - IP Address and FQDN\n**customlabel.azureregion.azurecontainer.io**
 +++_ Hypervisor-level security
-+++_ Minimum customer data in order to run
++++_ <&question-mark> Minimum customer data in order to run
 +++_ Custom sizes for CPU cores and memory
 ++++ Optimum Utilization
 +++_ Mount Azure File shares directly to container
-+++_ Support using the same API
++++_ Support using the same API\nand deploy containers as
 ++++ Linux
 ++++ Windows
 ++ Container Group <<root>>

@@ -1,5 +1,9 @@
 @startmindmap "Container Groups"
 
+' https://plantuml.com/theme
+!theme sketchy
+skinparam backgroundColor #969998
+
 title Container Groups
 footer Azure Container Instances
 
