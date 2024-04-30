@@ -1,4 +1,4 @@
-@startmindmap "Azure Container Apps"
+@startmindmap "Azure Container Apps Overview"
 
 title Azure Container Apps\nOverview
 
@@ -106,6 +106,8 @@ endlegend
 ++ Traffic splitting
 +++_ Blue/Green deployments and A/B testing
 
+++ Multiple Revisions
++++_ Run multiple container revisions
 
 ++ Configuration
 +++_ Manage applications with Azure CLI, Azure portal, ARM templates
@@ -119,6 +121,7 @@ endlegend
 
 -- Authentication and authorization
 ---_ **Built-in AuthZ and AuthN**
+----_ as a sidecar
 ---_ **No code required**
 ---_ Federated identity providers: Microsoft Identity Platform,\nFacebook, GitHub, Google, Twitter, Any OpenID Connect provider
 
@@ -128,5 +131,7 @@ endlegend
 ---- Azure Container Registry (ACR)
 ---_ Deploy images from private and public registries
 ---_ Credentials + registry fields info in configuration
+
++ Requires Azure Container Apps CLI Extension to be installed
 
 @endmindmap

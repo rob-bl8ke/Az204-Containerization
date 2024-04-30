@@ -10,13 +10,13 @@ az logout
 
 az login
 
-# Install the Azure Container Apps extension for CLI
+# Install the Azure Container Apps extension for CLI, upgrade it if already installed...
 az extension add --name containerapp --upgrade
 
 # Register the Microsoft.App namespace
 az provider register --namespace Microsoft.App
 
-# Register Microsoft.OperationalInsights provier
+# Register Microsoft.OperationalInsights provider for the Azure Monitor Log Analytics workspace
 az provider register --namespace Microsoft.OperationalInsights
 
 

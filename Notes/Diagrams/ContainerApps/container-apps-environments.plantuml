@@ -1,6 +1,6 @@
 @startmindmap "Azure Container Apps Environment"
 
-title Azure Container AppsEnviornment\nOverview
+title Azure Container Apps Environment\nOverview
 
 caption A Secure Boundary
 footer To manage related services (microservices) with or without Dapr
@@ -65,6 +65,7 @@ skinparam backgroundColor #969998
 + Azure Container Apps\nEnvironment <<root>>
 ++_ Share the same
 +++ Configuration
+++++_ Will share the same Dapr config
 +++ Virtual Network
 ++++ Secure Boundary
 ++++_ **HTTPS ingress** without managing other Azure infrastructure
@@ -75,6 +76,8 @@ skinparam backgroundColor #969998
 ++_ provides
 +++ Microservices properties
 ++++_ Independent
++++++ Deployment
+++++++_ of related services
 +++++ scaling
 +++++ versioning
 +++++ upgrades
@@ -83,18 +86,16 @@ skinparam backgroundColor #969998
 ++++ Dapr integration
 +++++_ extra support\nfor
 ++++++_ Distributed function calls
-++++++_ Failure handling, retries, timeouts
+++++++_ Handling failures, retries, timeouts
 ++++++_ Observability, pub/sub
 ++++++_ Service-to-service invocation\n\twith mutual TLS
-++++++_ Retries
+
 ++_ Microservice management via
 +++ Dapr
 ++++_ service invocation API
 
-++ Deploy
-+++_ related services together
-+++_ different applications in the same virtual network
-+++ Optional
-++++_ <&flag> deploy to different environments for resource isolation and communication restrictions <<blue>>
+--_ Use different environments if...\n...do not want...
+---_ to share the same resources
+---_ to communicate via\nDapr service invocation API
 
 @endmindmap

@@ -1,0 +1,23 @@
+@startmindmap "Azure Container Apps Dapr Integration"
+skinparam nodeWidth 200
+skinparam nodeHeight 30
+
++ Dapr integration
+++ Distributed Application Runtime (Dapr)
++++_ Simplifies the authoring of distributed, microservice-based applications
++++_ Provides capabilities for intercommunication and service-to-service calls
+++ Dapr APIs
++++_ Service-to-service invocation with mTLS authentication and encryption
++++_ State management for transactions and CRUD operations
++++_ Pub/sub for publisher and subscriber intercommunication
++++_ Bindings to trigger applications based on events
++++_ Dapr actors for scalable, message-driven units of work
++++_ Observability with tracing information to Application Insights
++++_ Secrets access from application code or Dapr components
+++ Dapr enablement
++++_ Configurable through Container Apps CLI, IaC templates, or the Azure portal
+++ Dapr components and scopes
++++_ Modular design with pluggable abstraction for connecting to external services
++++_ Can be shared across container apps or scoped to specific apps
++++_ Can use Dapr secrets for secure configuration metadata
+@endmindmap

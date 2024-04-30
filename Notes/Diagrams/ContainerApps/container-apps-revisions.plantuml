@@ -1,0 +1,101 @@
+@startmindmap "Azure Container Apps Revisions"
+title Azure Container Apps\nRevisions
+
+' Available themes: https://plantuml.com/theme
+!theme sketchy
+
+' skinparam backgroundColor #e8edec
+skinparam backgroundColor #969998
+' skinparam nodeWidth 200
+' skinparam nodeHeight 30
+
+<style>
+    mindMapDiagram {
+        .root {
+            BackgroundColor darkblue
+            LineColor black
+            FontColor white
+        }
+
+        .blue {
+            FontColor darkblue
+        }
+
+        node {
+            FontColor white
+            LineColor black
+            BackgroundColor black
+            Shadowing 2.0
+            RoundCorner 25
+        }
+        :depth(0) {
+            FontColor black
+            LineColor white
+            BackgroundColor white
+            Shadowing 0.0
+        }
+        :depth(1) {
+            FontColor black
+            BackgroundColor darkgrey
+            Shadowing 2.0
+        }
+
+        arrow {
+            LineStyle 4
+            LineThickness 0.5
+            LineColor green
+        }
+
+        boxless {
+            FontColor black
+            Margin 10
+            Padding 10
+            MaximumWidth 400
+        }
+    }
+</style>
+
+caption Revisions
+footer Immutable snapshots of container app versions.
+
+
++ Container app revisions
+++_ Immutable snapshots
++++_ used to...
+++++_ Release a new version
+++++_ Revert to an earlier version
++++_ triggered by
+++++ Revision-scope\nchanges
++++++_ Parameter change in\n**properties.template** ARM template
+++++++_ Revision suffix
+++++++_ Container configuration\nand images
+++++++_ Scale rules
+++ Active Revisions
++++_ Routing of external traffic
+++ Revision names
++++_ Part of URL
++++_ Identify revision
+++++_ defaults to
++++++_ Unique revision name
++++++ suffix
+++++++_ semi-random string of alphanumeric characters
+++++ Customize
++++++_ Set revision suffix
++++++_ Example
+++++++ albumapi--1st-revision
++ Application-scope changes
+++_ Changes applied globally to all revisions
+++_ A new revision isn't created
+++_ Any change to
++++_ **properties.configuration** in ARM template
+++++_ Secret values
+++++_ Revision mode
+++++_ Ingress configuration
+++++_ Credentials for private container registries
+++++_ Dapr settings
+
+legend right
+Revisions are immutable snapshots of container app versions.
+endlegend
+
+@endmindmap
