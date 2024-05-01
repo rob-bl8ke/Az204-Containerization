@@ -77,6 +77,39 @@ az containerapp create `
     --env-vars "QueueName=myqueue" "ConnectionString=secretref:queue-connection-string"
 ```
 
+### Key Vault Concerns (and Managed Identity)
+
+Since there is no direct integration with Azure Key Vault, it is recommended that you enable managed identity for your Container App. You can then use the Azure Key Vault SDK to access secrets.
+
+Here is how you would assign a system assigned identity.
+```Bash
+# Assign a system-assigned managed identity
+az containerapp identity assign \
+	--name $containerAppName \
+	--resource-name $resourceGroup
+```
+
+Here is how you would assign a user-assigned managed identity. 
+
+```Bash
+# Create a user-assigned managed identity
+az identity create --resource-group $resourceGroup --name $userAssignedIdentity
+
+# Assign a user-assigned managed identity
+az containerapp identity assign \
+	--name $containerAppName \
+	--resource-group $resourceGroup \
+	--identities /subscriptions/$subsriptionId/resourcegroups/$resourceGroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/$userAssignedIdentity
+```
+
+Similarly you can assign a managed identity the the App Service Environment.
+
+```Bash
+az containerapp env identity assign \
+	--name $containerAppName \
+	--resource-name $resourceGroup
+```
+
 ## Clean up
 
 ```bash
