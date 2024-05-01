@@ -1,23 +1,100 @@
-@startmindmap "Azure Container Apps Dapr Integration"
-skinparam nodeWidth 200
-skinparam nodeHeight 30
+@startmindmap "Azure Container Apps Environment"
+
+title Azure Container Apps Environment\nDapr (Distributed Application Runtime)
+
+caption Manage distributed microservice-based applications
+footer An open source Cloud Native Computing Foundation (CNCF) project. A set o best practice building blocks.
+
+
+' List of available themes:
+' https://plantuml.com/theme
+!theme sketchy
+'!theme carbon-gray
+'!theme cyborg
+'!theme mars
+' skinparam backgroundColor #e8edec
+skinparam backgroundColor #969998
+
+<style>
+    mindMapDiagram {
+        .root {
+            BackgroundColor darkblue
+            LineColor black
+            FontColor white
+        }
+
+        .blue {
+            FontColor darkblue
+        }
+
+
+        node {
+            FontColor white
+            LineColor black
+            BackgroundColor black
+            Shadowing 2.0
+            RoundCorner 25
+        }
+        :depth(0) {
+            FontColor black
+            LineColor white
+            BackgroundColor white
+            Shadowing 0.0
+        }
+        :depth(1) {
+            FontColor black
+            BackgroundColor darkgrey
+            Shadowing 2.0
+        }
+
+        arrow {
+            LineStyle 4
+            LineThickness 0.5
+            LineColor green
+        }
+
+        boxless {
+            FontColor black
+            Margin 10
+            Padding 10
+            MaximumWidth 400
+        }
+    }
+</style>
 
 + Dapr integration
 ++ Distributed Application Runtime (Dapr)
 +++_ Simplifies the authoring of distributed, microservice-based applications
 +++_ Provides capabilities for intercommunication and service-to-service calls
 ++ Dapr APIs
-+++_ Service-to-service invocation with mTLS authentication and encryption
-+++_ State management for transactions and CRUD operations
-+++_ Pub/sub for publisher and subscriber intercommunication
-+++_ Bindings to trigger applications based on events
-+++_ Dapr actors for scalable, message-driven units of work
-+++_ Observability with tracing information to Application Insights
-+++_ Secrets access from application code or Dapr components
++++_ **Service-to-service invocation** with mutual TLS authentication and encryption
++++_ **State management** for transactions and CRUD operations
++++_ **Pub/sub** for publisher and subscriber intercommunication
++++_ **Bindings** to trigger applications based on events
++++_ **Dapr actors** for scalable, message-driven units of work
++++_ **Observability** with tracing information to Application Insights
++++_ **Secrets access** from application code or Dapr components
 ++ Dapr enablement
-+++_ Configurable through Container Apps CLI, IaC templates, or the Azure portal
-++ Dapr components and scopes
++++_ Configurable through Container Apps
+++++_ Azure CLI
+++++_ Infrastructure as Code (IaC) templates
++++++_ ARM
++++++_ Bicep
+
+++++_ Azure portal
+++ Dapr components
 +++_ Modular design with pluggable abstraction for connecting to external services
+++++_ Azure Service Bus
+++++_ Azure Event Hubs
 +++_ Can be shared across container apps or scoped to specific apps
++++ Scopes
+++++_ Optional extension
++++++_ Limit Container Apps loading specific Dapr Components
 +++_ Can use Dapr secrets for secure configuration metadata
+
+legend right
+Azure Container Apps provide managed support for Dapr, simplifying microservice applications. 
+Enable intercommunication via pub/sub or reliable/secure service intercommunication.
+endlegend
+
 @endmindmap

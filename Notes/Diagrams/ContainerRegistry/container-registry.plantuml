@@ -1,6 +1,12 @@
 @startmindmap "Azure Container Registry"
 
+
+' https://plantuml.com/theme
+!theme sketchy
+skinparam backgroundColor #969998
+
 title Azure Container Registry
+footer Azure Container Registry
 
 <style>
     mindMapDiagram {
@@ -94,5 +100,11 @@ title Azure Container Registry
 --- Maintenance for Performance
 ----_ periodic deletion (repos, tags) for maintenance
 ----_ otherwise performance may be affected
+
+legend right
+Azure Container Registry (ACR) is a managed, private Docker registry service
+based on the open-source Docker Registry 2.0. Create and maintain Azure 
+container registries to store and manage your private Docker container images.
+endlegend
 
 @endmindmap

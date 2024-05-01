@@ -58,6 +58,7 @@ skinparam backgroundColor #969998
 caption Revisions
 footer Immutable snapshots of container app versions.
 
++ Control which revisions are active and direct external traffic routed to each revision.
 
 + Container app revisions
 ++_ Immutable snapshots
@@ -70,8 +71,9 @@ footer Immutable snapshots of container app versions.
 ++++++_ Revision suffix
 ++++++_ Container configuration\nand images
 ++++++_ Scale rules
+++++++_ Label
 ++ Active Revisions
-+++_ Routing of external traffic
++++_ Control routing of external traffic
 ++ Revision names
 +++_ Part of URL
 +++_ Identify revision

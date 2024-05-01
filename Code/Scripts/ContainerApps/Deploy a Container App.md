@@ -45,6 +45,38 @@ az containerapp create \
 # Take the domain name provided and browse to it... should get you to the welcome page!
 ```
 
+## Updating your Container App
+
+Modify environment variables, compute resources, scale parameters, and deploy a different image using...
+
+```PowerShell
+az container update `
+    --name "album-api" `
+    --resource-group $resourceGroup`
+    --image  mcr.microsoft.com/azuredocs/containerapps-helloworld
+```
+
+```PowerShell
+az container revision list `
+    --name "album-api" `
+    --resource-group $resourceGroup `
+    -o table
+```
+
+## Defining Secrets
+
+Note how you can access your secrets through environment variables by prepending the `secretref` prefix before the secret key name.
+
+```PowerShell
+az containerapp create `
+    --resource-group $resourceGroup `
+    --name $containerAppName `
+    --environment $containerAppEnvironment `
+    --image "mcr.microsoft.com/azuredocs/containerapps-helloworld" `
+    --secrets "queue-connection-string=$connectionString" `
+    --env-vars "QueueName=myqueue" "ConnectionString=secretref:queue-connection-string"
+```
+
 ## Clean up
 
 ```bash

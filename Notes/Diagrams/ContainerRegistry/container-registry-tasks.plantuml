@@ -1,6 +1,11 @@
 @startmindmap "Azure Container Registry Tasks"
 
+' https://plantuml.com/theme
+!theme sketchy
+skinparam backgroundColor #969998
+
 title Azure Container Registry Tasks
+footer Azure Container Registry Tasks
 
 <style>
     mindMapDiagram {
@@ -81,5 +86,12 @@ title Azure Container Registry Tasks
 ++ Explore elements of a Dockerfile
 +++_ **Dockerfile** is a script containing instructions to build a Docker image
 +++_ Includes information on the base image, updating the base OS,\ninstalling software, build artifacts, services to expose, and the command to run
+
+legend right
+ACR Tasks is a suite of features within Azure Container Registry.
+ACR Tasks enables automated builds triggered by source code updates, 
+updates to a container's base image, or timers.
+It can also automate OS and framework patching for your Docker containers.
+endlegend
 
 @endmindmap

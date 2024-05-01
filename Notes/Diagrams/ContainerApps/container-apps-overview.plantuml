@@ -54,7 +54,7 @@ skinparam backgroundColor #969998
     }
 </style>
 
-caption Serverless container service <<blue>>
+caption Serverless container service
 footer Built for microservice applications without the overhead of managing complex infrastructure
 
 legend right

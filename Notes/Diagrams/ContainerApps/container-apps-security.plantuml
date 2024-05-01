@@ -109,7 +109,7 @@ footer Built in AuthN and AuthZ features to secure your external ingress-enabled
 legend right
 Middleware sidecar component runs in a seperate process
 delegating authentication to to identity providers while
-managing session and request header identity injection.
+managing session and request header identity info injection.
 endlegend
 
 @endmindmap
