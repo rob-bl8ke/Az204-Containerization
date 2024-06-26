@@ -5,11 +5,11 @@
 ### Overview
 - Create a resource group.
 - Create a container.
-    - Git it an image and a FQDN and expose it via port 80.
+    - Give it an image and a FQDN and expose it via port 80.
 
 ### Code
 
-Set your variables. The `$dnsNameLabel` will become the fully qualified domain name (FQDN).
+Set your variables. The `$dnsNameLabel` will become the fully qualified domain name (FQDN). Structure is `customlabel.azureregion.azurecontainer.io`.
 ```powershell
 $resourceGroup = _ 
 $location = southafricasouth
@@ -115,12 +115,14 @@ To remove the resource and the container group and instance.
 Remove-AzContainerGroup -ResourceGroupName myResourceGroup -Name myContainerGroup
 ```
 
-## Create a Container Instance Group (Restart policy, CPU, memory, and environment variables)
+## Create two Container Instances (Restart policy, CPU, memory, and environment variables)
+
+> Note: To create a group (so that the instances can communicate) one has to deploy using either YAML or ARM templates
 
 ### Overview
 
 - Create a resource group.
-- Create a container. Give it a FQDN (exposed on port 80) and a restart policy. Request a CPU and memory of 1 GB respectively.
+- Create a container. Give it a FQDN (exposed on port 80 and port 443) and a restart policy. Request a single CPU and memory of 1 GB.
 - Create a container with environment variables
 
 > Although this exercise does successfully create a container group, unfortunately you can only see the properties of the other container, there is no way to interact with it as the two containers don't talk to each other and the word-count container is not exposed in any way. To view its environment variables one has to `az container show` it.
@@ -149,6 +151,7 @@ location=eastus
 az group create --name $resourceGroup --location $location
 
 DNS_NAME_LABEL=aci-example-$RANDOM
+# FQDN will end up as DNS_NAME_LABEL.azureregion.azurecontainer.io
 
 # Run container group and expose dns with ext. port
 az container create --resource-group $resourceGroup \
@@ -156,7 +159,7 @@ az container create --resource-group $resourceGroup \
     --image mcr.microsoft.com/azuredocs/aci-helloworld \
     --dns-name-label $DNS_NAME_LABEL \
     --restart-policy OnFailure \
-    --ports 80 \
+    --ports 80 443 \
     --cpu 1 \
     --memory 1
 
@@ -168,7 +171,8 @@ az container create \
     --name $wordContainer \
     --image mcr.microsoft.com/azuredocs/aci-wordcount \
     --restart-policy OnFailure \
-    --environment-variables 'NumWords'='5' 'MinLength'='8'
+    --environment-variables 'NumWords'='5' 'MinLength'='8' \
+    --secure-environment-variables 'ConnectionString'='...'
 
 
 az container show --resource-group $resourceGroup \

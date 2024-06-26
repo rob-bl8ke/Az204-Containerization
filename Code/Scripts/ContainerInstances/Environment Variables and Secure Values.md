@@ -1,5 +1,19 @@
 # Environment Variables and Secure Values
 
+```powershell
+az container create `
+    --resource-group $resourceGroup --name $wordContainer `
+    --image $image `
+    --restart-policy Always `
+    --environment-variables "NumWords=5 MinLength=8" `
+    --secure-environment-variables "ConnectionString=... Password=..."
+
+az container show --resource-group $resourceGroup `
+    --name $wordContainer `
+    --query "{EnvironmentVariables:containers[0].environmentVariables}" `
+    --out yaml
+```
+
 ```bash
 #!/bin/bash
 

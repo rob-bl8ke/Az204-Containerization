@@ -13,6 +13,7 @@ footer An open source Cloud Native Computing Foundation (CNCF) project. A set o 
 '!theme cyborg
 '!theme mars
 ' skinparam backgroundColor #e8edec
+
 skinparam backgroundColor #969998
 
 <style>
