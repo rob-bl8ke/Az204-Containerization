@@ -77,7 +77,7 @@ footer Azure Container Registry Tasks
 +++++ YAML
 ++++_ Extend single image build-and-push capability\nwith multi-step,\nmulti-container-based workflows
 
--- Image platforms
+-- Supported Image platforms
 --- Linux OS and the amd64 architecture
 ----_ ...used to build images by default.
 ---_ Specify **platform** tag to build Windows images or Linux images for other architectures

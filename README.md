@@ -43,6 +43,8 @@
 # References
 - [Fantastic resource that covers much of Azure](https://github.com/Huachao/azure-content)
 - [Use Environment Variables with PowerShell](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_environment_variables?view=powershell-7.3)
+- [OCI Image Format Specification](https://github.com/opencontainers/distribution-spec?tab=readme-ov-file) and its [spec](https://github.com/opencontainers/image-spec/blob/main/spec.md)
+- [Helm Charts](https://helm.sh/) - Package manager for Kubernetes.
 
 # Useful Visual Studio Extensions
 

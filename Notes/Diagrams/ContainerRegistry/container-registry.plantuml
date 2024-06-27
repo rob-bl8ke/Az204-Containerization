@@ -52,20 +52,19 @@ footer Azure Container Registry
 
 + ACR <<root>>
 ++ Use cases
-+++ Deploy to...
++++_ Pull images...\nDeploy to...
 ++++ Scalable orchestration systems
 +++++_ Kubernetes, DC/OS, Docker Swarm
 ++++ Azure services
-+++++_ For building and running applications at scale
-+++++_ Azure Kurbernetes Service (AKS)
-+++++_ App Service, Batch, Service Fabric.
++++++_ For building\nand running\napplications at scale
+++++++_ Azure Kurbernetes Service (AKS)
+++++++_ App Service
+++++++_ Batch
+++++++_ Service Fabric.
 +++ Continuous integration and delivery
 ++++_ Push from...
 +++++_ Azure Pipelines
 +++++_ Jenkins
-+++ ACR Tasks <<root>>
-++++_ Automatically rebuild application images when base images updated
-++++_ Create multi-step tasks (build, test, push, deploy)
 -- Service tiers
 --- Basic
 ----_ cost-optimized entry point for developers
@@ -84,13 +83,17 @@ footer Azure Container Registry
 ++ Automated image builds
 +++ ACR Tasks <<root>>
 ++++_ Building, testing, pushing, and deploying images.
+++++_ Automatically rebuild application images when base images updated
+++++_ Create multi-step tasks (build, test, push, deploy)
 +++_ Container OS and framework patching pipeline automation
 +++_ Automatic image builds on code commits
 -- Storage capabilities
 --- Encryption-at-rest
 ----_ for image data security
---- Regional storage 
-----_ for data residency and compliance
+--- Regional storage
+---- Data Compliance Requirements
+----_ ...for data residency and compliance
+-----_ Data stored in same region as registry
 ----_ paired regions if available (or enable geo-replication)
 --- Zone redundancy
 ----_ in the Premium service tier
